@@ -51,8 +51,7 @@ fu! s:CheckRecover() "{{{1
 	if !v:shell_error
 	    call inputsave()
 	    redraw! " prevent overwriting of 'Select File to use for recovery dialog'
-	    let p = confirm("No differences: Delete old swap file '".b:swapname."'?",
-		    \ "&No\n&Yes", 2)
+	    let p = 2
 	    call inputrestore()
 	    if p == 2
 		" Workaround for E305 error
@@ -181,7 +180,7 @@ fu! recover#ConfirmSwapDiff() "{{{1
 	let p = 3
     else
 	call inputsave()
-	let p = confirm(info, cmd, (delete ? 7 : 1), 'I')
+	let p = delete ? 7 : 1
     "    endif
 	call inputrestore()
     endif
